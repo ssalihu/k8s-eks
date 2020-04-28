@@ -7,6 +7,7 @@ env:
 before_install:
     - docker run alpine/k8s:1.11.10
     - export img=`docker ps |grep alpine |awk '{print $1}'`
+    - echo `docker ps |grep alpine |awk '{print $1}'`
     - docker cp credentials.enc `docker ps |grep alpine |awk '{print $1}'`:/apps/credentials.enc
     - docker cp config.enc `docker ps |grep alpine |awk '{print $1}'`:/apps/config.enc
     - docker cp aws.sh `docker ps |grep alpine |awk '{print $1}'`:/apps/aws.sh
