@@ -5,13 +5,8 @@ env:
     global:
         - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
-    - docker run alpine/k8s:1.11.10
-    - export img=`docker ps |grep alpine |awk '{print $1}'`
-    - echo `docker ps |grep alpine |awk '{print $1}'`
-    - docker cp credentials.enc `docker ps |grep alpine |awk '{print $1}'`:/apps/credentials.enc
-    - docker cp config.enc `docker ps |grep alpine |awk '{print $1}'`:/apps/config.enc
-    - docker cp aws.sh `docker ps |grep alpine |awk '{print $1}'`:/apps/aws.sh
+    - bash aws-add-eks.sh
 install:
-    - docker exec -it `docker ps |grep alpine |awk '{print $1}'` /app/aws.sh
+    - bash aws-elb-ingress.sh
 after_success:
-    - echo "Success"
+    - bash aws-remove-eks.sh
