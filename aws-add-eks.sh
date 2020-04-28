@@ -18,6 +18,6 @@ sudo mv /tmp/eksctl /usr/local/bin
 
 #export AWS_PROFILE=aws-eks
 
-eksctl create cluster -f ekssetup-course.yaml
-aws eks --region us-east-1 update-kubeconfig --name EmployeeTestCluster
-#eksctl delete cluster -f ekssetup-course.yaml
+eksctl create cluster -f $2
+aws eks --region us-east-1 update-kubeconfig --name $1 $2
+#eksctl delete cluster -f $2

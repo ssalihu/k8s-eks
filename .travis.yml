@@ -5,8 +5,8 @@ env:
     global:
         - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
-    - bash aws-add-eks.sh
+    - bash aws-add-eks.sh EmployeeTestCluster ekssetup-course.yaml
 install:
-    - bash aws-elb-ingress.sh
+    - bash aws-elb-ingress.sh EmployeeTestCluster
 after_success:
-    - bash aws-remove-eks.sh
+    - bash aws-remove-eks.sh ekssetup-course.yaml
