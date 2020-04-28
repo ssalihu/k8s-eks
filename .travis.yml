@@ -6,11 +6,11 @@ env:
         - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
     - docker run alpine/k8s:1.11.10
-    - docker cp credentials.enc alpine/k8s:1.11.10:/apps
-    - docker cp config.enc alpine/k8s:1.11.10:/apps
-    - docker cp setup-aws-eks.yaml alpine/k8s:1.11.10:/apps
-    - docker cp aws.sh alpine/k8s:1.11.10:/apps
+    - export img=`docker ps |grep alpine |awk '{print $1}'`
+    - docker cp credentials.enc img:/apps/credentials.enc
+    - docker cp config.enc img:/apps/config.enc
+    - docker cp aws.sh img:/apps/aws.sh
 install:
-    - docker exec -it alpine/k8s:1.11.10 /app/aws.sh
+    - docker exec -it img /app/aws.sh
 after_success:
     - echo "Success"
