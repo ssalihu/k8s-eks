@@ -7,10 +7,10 @@ env:
 before_install:
     - docker run alpine/k8s:1.11.10
     - export img=`docker ps |grep alpine |awk '{print $1}'`
-    - docker cp credentials.enc $img:/apps/credentials.enc
-    - docker cp config.enc $img:/apps/config.enc
-    - docker cp aws.sh $img:/apps/aws.sh
+    - docker cp credentials.enc `docker ps |grep alpine |awk '{print $1}'`:/apps/credentials.enc
+    - docker cp config.enc `docker ps |grep alpine |awk '{print $1}'`:/apps/config.enc
+    - docker cp aws.sh `docker ps |grep alpine |awk '{print $1}'`:/apps/aws.sh
 install:
-    - docker exec -it $img /app/aws.sh
+    - docker exec -it `docker ps |grep alpine |awk '{print $1}'` /app/aws.sh
 after_success:
     - echo "Success"
