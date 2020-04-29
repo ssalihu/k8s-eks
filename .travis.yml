@@ -8,7 +8,7 @@ before_install:
     - mkdir -p ~/.aws
     - openssl aes-256-cbc -K $encrypted_d506bd5213c4_key -iv $encrypted_d506bd5213c4_iv -in credentials.enc -out ~/.aws/credentials -d
     - openssl aes-256-cbc -K $encrypted_dfba7aade086_key -iv $encrypted_dfba7aade086_iv -in config.enc -out ~/.aws/config -d
-    - bash aws-add-eks.sh EmployeeTestCluster setup-aws-eks.yaml
+    - travis_wait 30 bash aws-add-eks.sh EmployeeTestCluster setup-aws-eks.yaml 
 install:
     - bash aws-elb-ingress.sh EmployeeTestCluster
 after_success:

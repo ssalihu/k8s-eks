@@ -1,1 +1,1 @@
-eksctl delete cluter -f setup-aws-eks.yaml
+eksctl delete cluster -f setup-aws-eks.yaml
